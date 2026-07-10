@@ -1,0 +1,45 @@
+name: Auto Create Flutter Project
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  create_flutter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Create Flutter project if missing
+        run: |
+          if [ ! -f "pubspec.yaml" ]; then
+            PROJECT_NAME=$(basename "$GITHUB_REPOSITORY" | tr '-' '_')
+            flutter create --project-name "$PROJECT_NAME" .
+          else
+            echo "Flutter project already exists."
+          fi
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Auto create Flutter project"
+            git push
+          fi
