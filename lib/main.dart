@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 void main() => runApp(const MyApp());
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -10,10 +13,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
+
   @override
-  rim Build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('SocialHome'),
@@ -23,58 +28,13 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Feed'),
-                  ),
-                );
-              },
-              child: Text('Feed'),
+              child: const Text('Feed'),
+              onPressed: () => ScaffoldMessenger.of(context)
+                  .showSnackBar(const SnackBar(content: Text('Feed'))),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Create Post'),
-                  ),
-                );
-              },
-              child: Text('Create Post'),
-            ),
-            SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Messages'),
-                  ),
-                );
-              },
-              child: Text('Messages'),
-            ),
-            SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Notifications'),
-                  ),
-                );
-              },
-              child: Text('Notifications'),
-            ),
-            SizedBox(height: 12),
-            ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Profile'),
-                  ),
-                );
-              },
-              child: Text('Profile'),
+              child: const Text(' BAC Messages'),
             ),
           ],
         ),
